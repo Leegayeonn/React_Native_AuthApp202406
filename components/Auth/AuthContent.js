@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import AuthForm from './AuthForm';
 import FlatButton from '../ui/FlatButton';
+import { Colors } from '../../constants/styles';
 
-const AuthContent = () => {
+const AuthContent = ({ onAuthenticate }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   const [credentialsInvalid, setCredentialsInvalid] = useState({
@@ -12,21 +13,17 @@ const AuthContent = () => {
     password: false,
     confirmPassword: false,
   });
-
   const submitHandler = (credentials) => {
     let { email, name, password, confirmPassword } = credentials;
     console.log('submitHandler email: ', email);
-
     email = email.trim();
     password = password.trim();
     const nameRegex = /^[가-힣]{2,5}$/;
-
     // 실제로 적용하실 때는 각 입력 창마다 정규표현식으로 빡세게 검사하세요.
     const emailIsValid = email.includes('@');
     const nameIsValid = nameRegex.test(name);
     const passwordIsValid = password.length > 6;
     const passwordsAreEqual = password === confirmPassword;
-
     if (
       !emailIsValid ||
       !passwordIsValid ||
@@ -44,10 +41,11 @@ const AuthContent = () => {
     }
 
     // 회원가입 or 로그인 처리
+    onAuthenticate({ email, password, name });
   };
 
   return (
-    <View>
+    <View style={styles.authContent}>
       <AuthForm
         isLogin={isLogin}
         onSubmit={submitHandler}
@@ -63,3 +61,18 @@ const AuthContent = () => {
 };
 
 export default AuthContent;
+
+const styles = StyleSheet.create({
+  authContent: {
+    marginTop: 64,
+    marginHorizontal: 32,
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: Colors.primary800,
+    elevation: 2,
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.35,
+    shadowRadius: 4,
+  },
+});
