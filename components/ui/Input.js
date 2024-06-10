@@ -4,7 +4,7 @@ import { Colors } from '../../constants/styles';
 
 const Input = ({
   label,
-  keyBoardType,
+  keyboardType,
   secure,
   onUpdateValue,
   value,
@@ -14,9 +14,9 @@ const Input = ({
     <View style={styles.inputContainer}>
       <Text style={isInvalid && styles.labelInvalid}>{label}</Text>
       <TextInput
-        style={[styles.input, isInvalid && styles.inputInvalid]} // 스타일 적용이 두개이상이면 배열로 묶어서 전달.
+        style={[styles.input, isInvalid && styles.inputInvalid]} // 스타일 적용이 두개 이상이면 배열로 묶어서 전달.
         autoCapitalize='none'
-        keyBoardType={keyBoardType}
+        keyboardType={keyboardType}
         secureTextEntry={secure}
         onChangeText={onUpdateValue}
         value={value}
@@ -24,9 +24,7 @@ const Input = ({
     </View>
   );
 };
-
 export default Input;
-
 const styles = StyleSheet.create({
   inputContainer: {
     marginVertical: 8,

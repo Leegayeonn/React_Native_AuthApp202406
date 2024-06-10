@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { Children, useState } from 'react';
-import Input from './../ui/Input';
 import Button from './../ui/Button';
+import Input from './../ui/Input';
 
 const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -82,7 +82,7 @@ const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
               this,
               'confirmPassword',
             )}
-            isInvalid={passwordDontMatch}
+            isInValid={passwordDontMatch}
             value={enteredConfirmPassword}
           />
         )}
