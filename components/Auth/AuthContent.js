@@ -4,7 +4,7 @@ import AuthForm from './AuthForm';
 import FlatButton from '../ui/FlatButton';
 
 const AuthContent = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
